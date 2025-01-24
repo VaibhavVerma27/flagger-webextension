@@ -9,7 +9,13 @@
 
     try {
         // Send the body content to the API
-        const response = await axios.post(apiUrl, {bodyContent, currentUrl});
+        const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ bodyContent, currentUrl }),
+        });
 
         if (response.status === 200) {
             // Redirect the user to your website on success
