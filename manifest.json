@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Send Page Body to API",
+  "version": "1.0",
+  "description": "Extracts the body content of the current page, sends it to an API, and redirects the user.",
+  "permissions": ["activeTab", "scripting"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon.png"
+    }
+  }
+}
