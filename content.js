@@ -1,8 +1,7 @@
 (async function () {
     // Extract the body content of the current page
-    const bodyContent = document.body.innerText;
+    const bodyText = document.body.innerText;
     const currentUrl = window.location.href;
-
 
     // Define the API endpoint
     const apiUrl = "https://flagger-ai.vercel.app/api/cache";
@@ -14,12 +13,12 @@
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ bodyContent, currentUrl }),
+            body: JSON.stringify({ bodyText, currentUrl }),
         });
 
         if (response.status === 200) {
             // Redirect the user to your website on success
-            window.location.href = `https://flagger-ai.vercel.app/checker/${encodeURI(currentUrl)}`;
+            window.open(`https://flagger-ai.vercel.app/checker/${encodeURIComponent(currentUrl)}`, "_blank");
         } else {
             console.error("Failed to send data to the API:", response.statusText);
         }
