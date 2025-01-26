@@ -1,12 +1,16 @@
-chrome.action.onClicked.addListener(async (tab) => {
-    try {
-        if (tab.id) {
+chrome.webNavigation.onCompleted.addListener(async (details) => {
+    const { tabId, url } = details;
+    const patterns = [/\/terms$/, /\/terms-and-conditions$/, /\/tos$/];
+    if (patterns.some((pattern) => pattern.test(url))) {
+        try {
             await chrome.scripting.executeScript({
-                target: { tabId: tab.id },
+                target: { tabId },
                 files: ["content.js"],
             });
+        } catch (error) {
+            console.error("Error injecting content script:", error);
         }
-    } catch (error) {
-        console.error("Error injecting content script:", error);
     }
+}, {
+    url: [{ urlMatches: ".*" }],
 });
