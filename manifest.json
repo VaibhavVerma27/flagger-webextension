@@ -3,7 +3,7 @@
   "name": "Send Page Body to API",
   "version": "1.0",
   "description": "Extracts the body content of the current page, sends it to an API, and redirects the user.",
-  "permissions": ["activeTab", "scripting","webNavigation"],
+  "permissions": ["activeTab", "scripting"],
   "background": {
     "service_worker": "background.js"
   },
